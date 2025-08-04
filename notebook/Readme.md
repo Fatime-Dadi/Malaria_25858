@@ -1,63 +1,66 @@
-Nigeria Malaria Data Analysis
-Cleaning, Exploration, and Predictive Modeling
+# Nigeria Malaria Data Analysis
 
-Project Structure
-text
-├── data/  
-│ └── Nigerian_malaria.csv # Raw dataset (NMIS 2016)  
-├── notebooks/  
-│ └── dataclean.ipynb # Data cleaning & EDA (Jupyter Notebook)  
-├── outputs/  
-│ ├── cleaned_data/ # Processed CSV files  
-│ └── visualizations/ # Graphs/plots  
-└── README.md  
-Dataset Overview
-File: Nigerian_malaria.csv
+## Project Overview
 
-Source: Nigeria Malaria Indicator Survey (NMIS 2016)
+This project analyzes malaria data from the Nigeria Malaria Indicator Survey (NMIS 2016) to explore household and environmental factors, clean and preprocess the data, and build predictive models for malaria risk. The workflow includes data cleaning, exploratory data analysis (EDA), and machine learning.
 
-Variables:
+## Project Structure
 
-hhid: Household ID
+### Data Description
 
-hv024, hv025: State/Region codes
+- **Raw Data**: `Nigerian_malaria.csv` contains household-level survey data.
+- **Key Variables**:
+  - `hhid`: Household ID
+  - `hv024`, `hv025`: State/Region codes
+  - `hv201`, `hv205`: Water source & sanitation
+  - `hv206`, `hv213`: Mosquito net usage
+  - `hv210`, `hv211`: Malaria testing results
 
-hv201, hv205: Water source & sanitation
+## Workflow
 
-hv206, hv213: Mosquito net usage
+### 1. Data Cleaning (`dataclean.ipynb`)
 
-hv210, hv211: Malaria testing results
+- Handle missing values: Especially in columns like hv213 (mosquito net usage) and hv214
+- Recode categorical variables: For example, convert hv025 (Urban/Rural) to binary (0/1)
+- Filter relevant columns
+- Save cleaned data: Output to `cleaned_data.csv` and `Nigerian_malaria_dashboard.csv`
 
-Notebook: dataclean.ipynb
+### 2. Exploratory Data Analysis (`data_visualization.ipynb`)
 
-1. Setup
-   python
-   import pandas as pd
-   import matplotlib.pyplot as plt
-   import seaborn as sns
-   import numpy as np
-2. Load Data
-   python
-   malaria = pd.read_csv('../data/Nigerian_malaria.csv')
-   malaria.head(10) # Preview first 10 rows
-3. Data Cleaning
-   Tasks:
+- Visualize distributions, correlations, and trends in the cleaned data
+- Analyze asset ownership, wealth, and malaria prevalence by region and household characteristics
 
-Handle missing values (hv213, hv214).
+### 3. Predictive Modeling (`Appl_machinelearnig.ipynb`)
 
-Recode categorical variables (e.g., hv025: Urban/Rural → 0/1).
+- Feature selection: Use cleaned and encoded variables
+- Modeling: Train classifiers (e.g., Logistic Regression, Random Forest) to predict malaria risk
+- Evaluation: Assess accuracy, confusion matrix, and classification report
 
-Filter relevant columns:
+### 4. Dashboarding (PowerBI)
 
-python
-cols = ['hv024', 'hv025', 'hv206', 'hv213', 'hv210']
-malaria_clean = malaria[cols].dropna() 4. Exploratory Analysis
+- Visualize key findings and predictions using PowerBI (`Dashbord.pbix`)
 
-Next Steps
-Merge Climate Data: Add CHIRPS/NOAA datasets for predictive modeling.
+## Next Steps
 
-Machine Learning: Train a classifier (e.g., Logistic Regression) in a new notebook.
+- Merge Climate Data: Integrate external climate datasets (e.g., CHIRPS/NOAA) for enhanced predictive modeling
+- Model Improvement: Experiment with additional features and advanced machine learning algorithms
 
-Fatime Dadi Wardougou , 25858
+## Usage
 
-My github link: https://github.com/Fatime-Dadi/Malaria_25858
+# 1. Clone the repository
+
+# 2. Ensure you have the required Python libraries:
+
+```bash
+pandas numpy matplotlib seaborn scikit-learn
+```
+
+Run notebooks in order:
+
+dataclean.ipynb → data_visualization.ipynb → Appl_machinelearnig.ipynb
+
+Explore the PowerBI dashboard for interactive visualizations
+
+Author
+Fatime Dadi Wardougou
+GitHub: Fatime-Dadi/Malaria_25858
